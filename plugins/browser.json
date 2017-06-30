@@ -1,0 +1,33 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "io.cordova.webpos"
+        },
+        "cordova-plugin-cache-clear": {
+            "PACKAGE_NAME": "io.resico.webpos"
+        },
+        "com.phonegap.plugins.barcodescanner": {
+            "PACKAGE_NAME": "io.resico.webpos"
+        },
+        "cordova-plugin-printer": {
+            "PACKAGE_NAME": "io.resico.webpos"
+        },
+        "cz.blocshop.socketsforcordova": {
+            "PACKAGE_NAME": "io.resico.webpos"
+        }
+    },
+    "dependent_plugins": {}
+}

@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      "cordova-plugin-printer",
+      "/var/www/html/webpos"
+    ]
+  ],
+  "_from": "cordova-plugin-printer@latest",
+  "_id": "cordova-plugin-printer@0.7.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/cordova-plugin-printer",
+  "_nodeVersion": "4.6.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/cordova-plugin-printer-0.7.3.tgz_1482157067755_0.5839182084891945"
+  },
+  "_npmUser": {
+    "email": "katzer@appplant.de",
+    "name": "katzer"
+  },
+  "_npmVersion": "4.0.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "cordova-plugin-printer",
+    "raw": "cordova-plugin-printer",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-printer/-/cordova-plugin-printer-0.7.3.tgz",
+  "_shasum": "828dbd0b328b15b345d25c5e64c42c4ef3164586",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-printer",
+  "_where": "/var/www/html/webpos",
+  "author": {
+    "name": "Sebastián Katzer"
+  },
+  "bugs": {
+    "url": "https://github.com/katzer/cordova-plugin-printer/issues"
+  },
+  "dependencies": {},
+  "description": "Prints HTML documents",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "828dbd0b328b15b345d25c5e64c42c4ef3164586",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-printer/-/cordova-plugin-printer-0.7.3.tgz"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=6.0.0"
+    },
+    {
+      "name": "android-sdk",
+      "version": ">=19"
+    },
+    {
+      "name": "apple-ios",
+      "version": ">=8.0"
+    }
+  ],
+  "gitHead": "ac03532de51267709424ad456fb6bb743f943381",
+  "homepage": "https://github.com/katzer/cordova-plugin-printer#readme",
+  "keywords": [
+    "appplant",
+    "cordova",
+    "ecosystem:cordova",
+    "printer"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+      "name": "katzer",
+      "email": "katzer@appplant.de"
+    }
+  ],
+  "name": "cordova-plugin-printer",
+  "optionalDependencies": {},
+  "platforms": [
+    "android",
+    "ios",
+    "windows"
+  ],
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katzer/cordova-plugin-printer.git"
+  },
+  "scripts": {},
+  "version": "0.7.3"
+}

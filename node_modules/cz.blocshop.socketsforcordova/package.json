@@ -1,0 +1,74 @@
+{
+  "_args": [
+    [
+      "cz.blocshop.socketsforcordova",
+      "/var/www/html/webpos"
+    ]
+  ],
+  "_from": "cz.blocshop.socketsforcordova@latest",
+  "_id": "cz.blocshop.socketsforcordova@1.1.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/cz.blocshop.socketsforcordova",
+  "_nodeVersion": "5.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/cz.blocshop.socketsforcordova-1.1.0.tgz_1484087301290_0.46530804224312305"
+  },
+  "_npmUser": {
+    "email": "br007@mail.com",
+    "name": "br007"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "cz.blocshop.socketsforcordova",
+    "raw": "cz.blocshop.socketsforcordova",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cz.blocshop.socketsforcordova/-/cz.blocshop.socketsforcordova-1.1.0.tgz",
+  "_shasum": "acedfdcd82f6658bde6b77c45083f99623a76e67",
+  "_shrinkwrap": null,
+  "_spec": "cz.blocshop.socketsforcordova",
+  "_where": "/var/www/html/webpos",
+  "cordova_name": "SocketsForCordova",
+  "dependencies": {},
+  "description": "\r\n\t\tThis Cordova plugin provides JavaScript API, that allows you to communicate with server through TCP protocol.\r\n\t\tCurrently we support these platforms: iOS, Android, WP8.\r\n\t",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "acedfdcd82f6658bde6b77c45083f99623a76e67",
+    "tarball": "https://registry.npmjs.org/cz.blocshop.socketsforcordova/-/cz.blocshop.socketsforcordova-1.1.0.tgz"
+  },
+  "engines": [],
+  "keywords": [
+    "cordova",
+    "network",
+    "socket",
+    "sockets",
+    "tcp"
+  ],
+  "license": "Apache 2.0",
+  "maintainers": [
+    {
+      "name": "br007",
+      "email": "br007@mail.com"
+    }
+  ],
+  "name": "cz.blocshop.socketsforcordova",
+  "optionalDependencies": {},
+  "platforms": [
+    "android",
+    "ios",
+    "wp8"
+  ],
+  "readme": "ERROR: No README data found!",
+  "scripts": {},
+  "version": "1.1.0"
+}
