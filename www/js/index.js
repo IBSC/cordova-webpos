@@ -68,6 +68,7 @@ var app = {
 												"Result: " + result.text + "\n" +
 												"Format: " + result.format + "\n" +
 												"Cancelled: " + result.cancelled);
+
 									}, 0);
 								},
 
@@ -84,7 +85,14 @@ var app = {
 						);
 					}
 				});
-			}, 100)
+			}, 100);
+
+			$('.no-zoom').bind('touchend', function(e) {
+				alert('x');
+				e.preventDefault();
+				$(this).click();
+
+			})
 		});
 
 		ref.addEventListener('exit', function() {
