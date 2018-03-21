@@ -18,7 +18,7 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
@@ -26,160 +26,152 @@ var app = {
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         this.receivedEvent('deviceready');
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
-    	console.log(id);
-		var success = function(status) {
-			console.log('Message: ' + status);
-		};
-		var error = function(status) {
-			console.log('Error: ' + status);
-		};
+    receivedEvent: function (id) {
+        console.log(id);
 
-		window.CacheClear(success, error);
+        window.CacheClear(function (status) {
+            console.log('Message: ' + status);
+        }, function (status) {
+            console.log('Error: ' + status);
+        });
 
-		StatusBar.hide();
-		var action;
-		var nameInterval;
-		var activeAction = '';
+        StatusBar.hide();
 
-    	var ref = cordova.InAppBrowser.open(encodeURI('http://10.79.3.151/webpos/'),'_self','location=no,toolbar=no,zoom=no,clearcache=no,clearsessioncache=no');
-		ref.addEventListener('loadstart', function(event) { console.log(event.url); });
+        var actionInterval;
+        var lastOrder = '';
 
-		ref.addEventListener( "loadstop", function() {
-			ref.executeScript({ code: "localStorage.setItem('action', '')" });
-			nameInterval = setInterval(function() {
-				ref.executeScript({ code: "localStorage.getItem('action')" }, function(values) {
-					localStorage.setItem('action', values[0]);
+        var ref = cordova.InAppBrowser.open(encodeURI('https://resico.gigi.tech/horeca/'), '_blank', 'location=no,toolbar=no,zoom=no');
+        ref.addEventListener('loadstart', function (event) {
+            console.log(event.url);
+        });
 
-					if(localStorage.getItem('action') == 'scan' && activeAction != 'scan'){
-						activeAction = 'scan';
-						cordova.plugins.barcodeScanner.scan(
+        ref.addEventListener("loadstop", function () {
+            AndroidFullScreen.immersiveMode(function () {
+            }, function () {
+            });
 
-								// success callback function
-								function (result) {
-									// wrapping in a timeout so the dialog doesn't free the app
-									setTimeout(function() {
-										alert("We got a barcode\n" +
-												"Result: " + result.text + "\n" +
-												"Format: " + result.format + "\n" +
-												"Cancelled: " + result.cancelled);
+            ref.executeScript({code: "localStorage.setItem('action', '')"});
+            actionInterval = setInterval(function () {
+                ref.executeScript({code: "localStorage.getItem('action')"}, function (values) {
+                    if (values[0]) {
 
-									}, 0);
-								},
+                        ref.executeScript({code: "localStorage.setItem('action', '')"});
+                        var storageData = JSON.parse(values[0]);
 
-								// error callback function
-								function (error) {
-									alert("Scanning failed: " + error);
-								},
+                        // webpos
+                        if (typeof(storageData.print) != 'undefined') {
+                            try {
+                                if (lastOrder != storageData.order) {
+                                    console.log(lastOrder);
+                                    lastOrder = storageData.order;
+                                    var socket = new Socket();
+                                    socket.open(
+                                        storageData.printer.ip,
+                                        storageData.printer.port,
+                                        function () {
+                                            for (var i = 0; i < storageData.print.length; i++) {
+                                                var data = new Uint8Array(storageData.print[i].length);
+                                                for (var y = 0; y < storageData.print[i].length; y++) {
+                                                    data[y] = storageData.print[i][y];
+                                                }
+                                                socket.write(data);
+                                            }
+                                            socket.close();
+                                        },
+                                        function (errorMessage) {
+                                            alert(errorMessage);
+                                        }
+                                    );
+                                }
+                            } catch (e) {
+                                alert(e.message);
+                            }
+                        }
 
-								// options objects
-								{
-									"preferFrontCamera" : false, // default false
-									"showFlipCameraButton" : true // default false
-								}
-						);
-					}
-				});
-			}, 100);
+                        // bareca
+                        if (typeof(storageData.printarray) != 'undefined') {
+                            try {
+                                if (lastOrder != storageData.order) {
+                                    lastOrder = storageData.order;
+                                    console.log(lastOrder);
+                                    $.each(storageData.printarray, function (k, v) {
+                                        var socket = new Socket();
+                                        socket.open(
+                                            storageData.printer[k].ip,
+                                            storageData.printer[k].port,
+                                            function () {
+                                                for (var i = 0; i < v.length; i++) {
+                                                    var data = new Uint8Array(v[i].length);
+                                                    for (var y = 0; y < v[i].length; y++) {
+                                                        data[y] = v[i][y];
+                                                    }
+                                                    socket.write(data);
+                                                }
+                                                socket.close();
+                                            },
+                                            function (errorMessage) {
+                                                alert(errorMessage);
+                                            }
+                                        );
+                                    });
+                                }
+                            } catch (e) {
+                                alert(e.message);
+                            }
+                        }
+                    }
+                });
+            }, 500);
 
-			$('.no-zoom').bind('touchend', function(e) {
-				alert('x');
-				e.preventDefault();
-				$(this).click();
+            $('.no-zoom').bind('touchend', function (e) {
+                e.preventDefault();
+                $(this).click();
+            })
+        });
 
-			})
-		});
+        ref.addEventListener('exit', function () {
+            clearInterval(actionInterval);
+            setTimeout(function () {
+                window.location.reload();
+            }, 500);
+        });
 
-		ref.addEventListener('exit', function() {
-			clearInterval(nameInterval);
-		});
+        /*
+        cordova.plugins.barcodeScanner.scan(
 
-		/*
-		cordova.plugins.barcodeScanner.scan(
+                // success callback function
+                function (result) {
+                    // wrapping in a timeout so the dialog doesn't free the app
+                    setTimeout(function() {
+                        alert("We got a barcode\n" +
+                                "Result: " + result.text + "\n" +
+                                "Format: " + result.format + "\n" +
+                                "Cancelled: " + result.cancelled);
+                    }, 0);
+                },
 
-				// success callback function
-				function (result) {
-					// wrapping in a timeout so the dialog doesn't free the app
-					setTimeout(function() {
-						alert("We got a barcode\n" +
-								"Result: " + result.text + "\n" +
-								"Format: " + result.format + "\n" +
-								"Cancelled: " + result.cancelled);
-					}, 0);
-				},
+                // error callback function
+                function (error) {
+                    alert("Scanning failed: " + error);
+                },
 
-				// error callback function
-				function (error) {
-					alert("Scanning failed: " + error);
-				},
+                // options objects
+                {
+                    "preferFrontCamera" : false, // default false
+                    "showFlipCameraButton" : true // default false
+                }
+        );
+        */
 
-				// options objects
-				{
-					"preferFrontCamera" : false, // default false
-					"showFlipCameraButton" : true // default false
-				}
-		);
-		*/
-		/*
-		cordova.plugins.printer.check(function (avail, count) {
-			alert(avail ? 'Found ' + count + ' services' : 'No');
-		});
-		*/
-
-		/*
-		const ESC = "\x1b";
-		const GS="\x1d";
-		const NUL="\x00";
-		const BEL="\x07";
-
-		var out = '';
-		out += ESC+"@"; // Reset to defaults
-		out += ESC+"E"+chr(1); // Bold
-		out += "RESICO Ltd.\n"; // Company
-		out += ESC+"E"+chr(0); // Not Bold
-		out += ESC+"d"+chr(1); // Blank line
-		out += "Receipt for whatever\n"; // Print text
-		out += ESC+"d"+chr(4); // 4 Blank lines
-
-		//barcode
-		out += ESC+"a"+chr(1); // Centered printing
-		out += GS+"k"+chr(4)+"987654321"+NUL; // Print barcode
-		out += ESC+"d"+chr(1); // Blank line
-		out += "987654321\n"; // Print number
-		out += GS+"V\x41"+chr(3); // Cut
-
-		var socket = new Socket();
-		socket.open(
-			"192.168.1.10",
-			9100,
-			function() {
-				var dataString = out;
-				var data = new Uint8Array(dataString.length);
-				for (var i = 0; i < data.length; i++) {
-					data[i] = dataString.charCodeAt(i);
-				}
-				socket.write(data);
-				socket.close();
-			},
-			function(errorMessage) {
-				alert(errorMessage);
-			}
-		);
-		*/
-	}
+        AndroidFullScreen.immersiveMode(function () {
+        }, function () {
+        });
+    }
 };
 
 app.initialize();
-
-function chr(n) {
-	if (n < 128) {
-		return String.fromCharCode(n);
-	} else {
-		return "ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ¢£¥₧ƒáíóúñÑªº¿⌐¬½¼¡«»░▒▓│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙·√ⁿ²■ "[n - 128];
-	}
-}

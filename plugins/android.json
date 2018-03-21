@@ -1,37 +1,49 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.cordova.webpos"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.cordova.webpos"
     },
-    "installed_plugins": {
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "io.cordova.webpos"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "io.cordova.webpos"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.webpos"
-        },
-        "cordova-plugin-cache-clear": {
-            "PACKAGE_NAME": "io.resico.webpos"
-        },
-        "com.phonegap.plugins.barcodescanner": {
-            "PACKAGE_NAME": "io.resico.webpos"
-        },
-        "cordova-plugin-printer": {
-            "PACKAGE_NAME": "io.resico.webpos"
-        },
-        "cz.blocshop.socketsforcordova": {
-            "PACKAGE_NAME": "io.resico.webpos"
-        }
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.cordova.webpos"
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "io.resico.webpos"
-        }
+    "cordova-plugin-cache-clear": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "com.phonegap.plugins.barcodescanner": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "cordova-plugin-printer": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "cz.blocshop.socketsforcordova": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.resico.webpos"
     }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "io.resico.webpos"
+    }
+  }
 }

@@ -49,6 +49,38 @@ module.exports = [
         "clobbers": [
             "window.Socket"
         ]
+    },
+    {
+        "id": "cordova-plugin-fullscreen.AndroidFullScreen",
+        "file": "plugins/cordova-plugin-fullscreen/www/AndroidFullScreen.js",
+        "pluginId": "cordova-plugin-fullscreen",
+        "clobbers": [
+            "AndroidFullScreen"
+        ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification_android",
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -61,7 +93,11 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.1.0",
     "com.phonegap.plugins.barcodescanner": "6.0.5",
     "cordova-plugin-printer": "0.7.3",
-    "cz.blocshop.socketsforcordova": "1.1.0"
+    "cz.blocshop.socketsforcordova": "1.1.0",
+    "cordova-plugin-fullscreen": "1.1.0",
+    "cordova-plugin-dialogs": "2.0.1",
+    "cordova-plugin-console": "1.1.0",
+    "cordova-plugin-splashscreen": "5.0.2"
 };
 // BOTTOM OF METADATA
 });
